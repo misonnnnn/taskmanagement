@@ -35,13 +35,7 @@ class UserController extends Controller
         ]);
 
         if (! Auth::check()) {
-            $result = [
-                'success' => false,
-                'message' => 'Unauthorized access',
-                'result' => [],
-            ];
-
-            return response()->json($result, 401);
+            return $this->returnUnauthorizedResponse();
         }
 
         $imagePaths = [];
@@ -81,6 +75,24 @@ class UserController extends Controller
         return response()->json(['success' => true, 'message' => 'Task created successfully!']);
     }
 
+    public function returnUnauthorizedResponse(){
+        $result = [
+            'success' => false,
+            'message' => 'Unauthorized access',
+            'result' => [],
+        ];
+
+        return response()->json($result, 401);
+    }
+
+    public function returnTaskNotFound(){
+        return response()->json([
+            'success' => false,
+            'message' => 'Task not found.',
+            'result' => [],
+        ], 404);
+    }
+
     public function getTasks(Request $request): JsonResponse
     {
         $limit = $request->input('limit', 10); // Default limit is 10
@@ -90,12 +102,7 @@ class UserController extends Controller
         $filter_by = $request->input('filter_by', []); // Filter by
 
         if (! Auth::check()) {
-            $result = [
-                'success' => false,
-                'result' => [],
-            ];
-
-            return response()->json($result, 401);
+            return $this->returnUnauthorizedResponse();
         }
 
         $query = Task::query();
@@ -181,13 +188,7 @@ class UserController extends Controller
     public function getTask(Request $request)
     {
         if (! Auth::check()) {
-            $result = [
-                'success' => false,
-                'message' => 'Unauthorized access',
-                'result' => [],
-            ];
-
-            return response()->json($result, 401);
+            return $this->returnUnauthorizedResponse();
         }
 
         $id = $request->id;
@@ -197,13 +198,7 @@ class UserController extends Controller
             ->first();
 
         if ($task->user_id != Auth::user()->id) {
-            $result = [
-                'success' => false,
-                'message' => 'Invalid request.',
-                'result' => [],
-            ];
-
-            return response()->json($result, 401);
+            return $this->returnUnauthorizedResponse();
         }
 
         // success
@@ -234,29 +229,15 @@ class UserController extends Controller
         $task = Task::find($request->task_id);
 
         if (! $task) {
-            return response()->json([
-                'success' => false,
-                'message' => 'Unauthorized access',
-                'result' => [],
-            ], 404);
+            return $this->returnTaskNotFound();
         }
 
         if (! Auth::check()) {
-            $result = [
-                'success' => false,
-                'message' => 'Unauthorized access',
-                'result' => [],
-            ];
-
-            return response()->json($result, 401);
+            return $this->returnUnauthorizedResponse();
         }
 
         if ($task->user_id != Auth::user()->id) {
-            return response()->json([
-                'success' => false,
-                'message' => 'Invalid request',
-                'result' => [],
-            ], 401);
+            return $this->returnUnauthorizedResponse();
         }
 
         $task->status = $request->status;
@@ -295,29 +276,15 @@ class UserController extends Controller
         $task = Task::find($request->task_id);
 
         if (! $task) {
-            return response()->json([
-                'success' => false,
-                'message' => 'Unauthorized access',
-                'result' => [],
-            ], 404);
+            return $this->returnTaskNotFound();
         }
 
         if (! Auth::check()) {
-            $result = [
-                'success' => false,
-                'message' => 'Unauthorized access',
-                'result' => [],
-            ];
-
-            return response()->json($result, 401);
+            return $this->returnUnauthorizedResponse();
         }
 
         if ($task->user_id != Auth::user()->id) {
-            return response()->json([
-                'success' => false,
-                'message' => 'Invalid request',
-                'result' => [],
-            ], 401);
+            return $this->returnUnauthorizedResponse();
         }
 
         $image_to_delete = json_decode($request->image_to_delete, true);
@@ -369,29 +336,15 @@ class UserController extends Controller
         $task = Task::find($request->task_id);
 
         if (! $task) {
-            return response()->json([
-                'success' => false,
-                'message' => 'Task not found.',
-                'result' => [],
-            ], 404);
+            return $this->returnTaskNotFound();
         }
 
         if (! Auth::check()) {
-            $result = [
-                'success' => false,
-                'message' => 'Unauthorized access',
-                'result' => [],
-            ];
-
-            return response()->json($result, 401);
+            return $this->returnUnauthorizedResponse();
         }
 
         if ($task->user_id !== Auth::user()->id) {
-            return response()->json([
-                'success' => false,
-                'message' => 'Unauthorized access.',
-                'result' => [],
-            ], 401);
+            return $this->returnUnauthorizedResponse();
         }
 
         $sub_tasks = json_decode($task->sub_tasks, true) ?? [];
@@ -438,29 +391,15 @@ class UserController extends Controller
         $task = Task::find($request->task_id);
 
         if (! $task) {
-            return response()->json([
-                'success' => false,
-                'message' => 'Task not found.',
-                'result' => [],
-            ], 404);
+            return $this->returnTaskNotFound();
         }
 
         if (! Auth::check()) {
-            $result = [
-                'success' => false,
-                'message' => 'Unauthorized access',
-                'result' => [],
-            ];
-
-            return response()->json($result, 401);
+            return $this->returnUnauthorizedResponse();
         }
 
         if ($task->user_id !== Auth::user()->id) {
-            return response()->json([
-                'success' => false,
-                'message' => 'Unauthorized access.',
-                'result' => [],
-            ], 401);
+            return $this->returnUnauthorizedResponse();
         }
 
         $sub_tasks = json_decode($task->sub_tasks, true) ?? [];
@@ -470,7 +409,6 @@ class UserController extends Controller
         foreach ($sub_tasks as &$sub_task) {
             if (isset($sub_task['id']) && $sub_task['id'] == $request->subtask_id) {
                 $sub_task['status'] = $request->status;
-                // $sub_task['updated_at'] = now()->toDateTimeString();
                 $updated = true;
                 break;
             }
@@ -522,29 +460,15 @@ class UserController extends Controller
         $task = Task::find($request->task_id);
 
         if (! $task) {
-            return response()->json([
-                'success' => false,
-                'message' => 'Task not found.',
-                'result' => [],
-            ], 404);
+            return $this->returnTaskNotFound();
         }
 
         if (! Auth::check()) {
-            $result = [
-                'success' => false,
-                'message' => 'Unauthorized access',
-                'result' => [],
-            ];
-
-            return response()->json($result, 401);
+            return $this->returnUnauthorizedResponse();
         }
 
         if ($task->user_id !== Auth::user()->id) {
-            return response()->json([
-                'success' => false,
-                'message' => 'Unauthorized access.',
-                'result' => [],
-            ], 401);
+            return $this->returnUnauthorizedResponse();
         }
         if ($request->boolean('toTrash')) {
             $task->status = self::TASK_STATUS_TRASH;
