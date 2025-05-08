@@ -41,11 +41,11 @@
                     <div class="modal-body">
                         <div class="mb-2">
                             <label>Title</label>
-                            <input type="text" name="title" class="addTaskFormInput form-control form-control-sm">
+                            <input type="text" name="title" class="addTaskFormInput form-control form-control-sm" required placeholder="Title">
                         </div>
                         <div class="mb-2">
                             <label>Content</label>
-                            <textarea name="content" id="" class="addTaskFormInput form-control form-control-sm"></textarea>
+                            <textarea name="content" id="" class="addTaskFormInput form-control form-control-sm" required ></textarea>
                         </div>
                         <div class="mb-2">
                             <input type="file" name="images[]" class="addTaskFormInput form-control form-control-sm shadow-none outline-none" multiple>
@@ -77,11 +77,11 @@
                     <div class="modal-body">
                         <div class="mb-2">
                             <label>Sub task Title</label>
-                            <input type="text" name="title" class="addTaskFormInput form-control form-control-sm">
+                            <input type="text" name="title" class="addTaskFormInput form-control form-control-sm" required placeholder="Title">
                         </div>
                         <div class="mb-2">
                             <label>Sub task Content</label>
-                            <textarea name="content" id="" class="addTaskFormInput form-control form-control-sm"></textarea>
+                            <textarea name="content" id="" class="addTaskFormInput form-control form-control-sm" required></textarea>
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -715,11 +715,11 @@
                     <div class="modal-body">
                         <div class="mb-2">
                             <label>Title</label>
-                            <input type="text" name="title" value="${task['title']}" class="form-control form-control-sm">
+                            <input type="text" name="title" value="${task['title']}" class="form-control form-control-sm" required placeholder="Title">
                         </div>
                         <div class="mb-2">
                             <label>Content</label>
-                            <textarea name="content" id=""  class="form-control form-control-sm">${task['content']}</textarea>
+                            <textarea name="content" id=""  class="form-control form-control-sm" required>${task['content']}</textarea>
                         </div>
                         <div class="mb-2">
                             <input type="file" name="images[]" class="form-control form-control-sm shadow-none outline-none" multiple>
