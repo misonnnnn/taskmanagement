@@ -19,7 +19,7 @@
                 <h4 class="m-0"><i class="fa-solid fa-table"></i> Tasks Board</h4>
             </div>
             <div>
-                <p class="m-0"> {{ Auth::user()->username }} <i class="fa fa-user"></i> | <a href="{{ URL('logout') }}">Logout <i class="fa-solid fa-power-off"></i></a></p>
+                <p class="m-0"> {{ ucwords(Auth::user()->username) }} <i class="fa fa-user"></i> | <a href="{{ URL('logout') }}">Logout <i class="fa-solid fa-power-off"></i></a></p>
             </div>
         </div>
     </div>
