@@ -51,7 +51,7 @@
                             <input type="file" name="images[]" class="addTaskFormInput form-control form-control-sm shadow-none outline-none" multiple>
                         </div>
                         <div class="mb-2">
-                            <input type="checkbox" id="save_as_draft_checkbox" name="save_as_draft_checkbox" value="1">
+                            <input type="checkbox" id="save_as_draft_checkbox" class="addTaskFormInput_checkbox" name="save_as_draft_checkbox" value="1">
                             <label for="save_as_draft_checkbox"> Save as draft</label><br>
                         </div>
                     </div>
@@ -77,11 +77,11 @@
                     <div class="modal-body">
                         <div class="mb-2">
                             <label>Sub task Title</label>
-                            <input type="text" name="title" class="addTaskFormInput form-control form-control-sm" required placeholder="Title">
+                            <input type="text" name="title" class="addsubTaskFormInput form-control form-control-sm" required placeholder="Title">
                         </div>
                         <div class="mb-2">
                             <label>Sub task Content</label>
-                            <textarea name="content" id="" class="addTaskFormInput form-control form-control-sm" required></textarea>
+                            <textarea name="content" id="" class="addsubTaskFormInput form-control form-control-sm" required></textarea>
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -281,6 +281,7 @@
 
             setTimeout(() => {
                 $(".addTaskFormInput").val("");
+                $(".addTaskFormInput_checkbox").prop('checked', false);
             }, 500);
         });
 
@@ -313,7 +314,7 @@
             });
 
             setTimeout(() => {
-                $(".addTaskFormInput").val("");
+                $(".addsubTaskFormInput").val("");
             }, 500);
         });
 
