@@ -14,26 +14,36 @@ Laravel-based Simple Task management System
 
 ---
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 - **Backend**: Laravel 11, PHP 8.1+
 - **Database**: MySQL 
 - **Frontend**: Blade / Jquery*
 ---
 
-## ⚙️ Installation
+## Installation
 
 ### 1. Clone the repository
 
 ```
 git clone https://github.com/misonnnnn/taskmanagement.git
+```
+
+```
 cd taskmanagement
+```
+
+```
 composer install
+```
+
+```
 cp .env.example .env
 ```
 
 ### 2. Update .env database credentials:
 ```
+APP_URL=http://127.0.0.1:8000/
 DB_DATABASE=taskmanagement
 DB_USERNAME=root
 DB_PASSWORD=
@@ -45,6 +55,10 @@ php artisan migrate
 ```
 
 ```
+php artisan key:generate
+```
+
+```
 php artisan serve
 ```
 
@@ -53,6 +67,11 @@ http://127.0.0.1:8000/
 
 
 ## other commands
+```
+php artisan storage:link
+```
+- Makes files in storage/app/public publicly accessible.
+
 ```
 php artisan app:remove-trash-data
 ```
