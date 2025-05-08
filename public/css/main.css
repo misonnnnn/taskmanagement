@@ -1,0 +1,57 @@
+.primary_background {
+    background: #00487f;
+}
+.custom_toast{
+    position:fixed;
+    right: 0px;
+    top: 80px;
+    z-index: 99999;
+}
+
+.toast_div {
+    -webkit-animation: toastAnimation 0.2s ease-out 0s forwards, toastAnimationExit 0.5s ease-out 3s forwards;
+    animation: toastAnimation 0.2s ease-out 0s forwards, toastAnimationExit 0.5s ease-out 3s forwards;
+    transform: translateX(100%);
+}
+
+@keyframes toastAnimation {
+    0% {
+        opacity: 0;
+        transform: translateX(100%);
+    }
+    50%{
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes toastAnimationExit {
+    0% {
+        opacity: 1;
+        margin-top: 0px;
+        transition:1s;
+    }
+    80% {
+        opacity: 0;
+        margin-top: -100px;
+    }
+    100%{
+        opacity: 0;
+        margin-top: -100px;
+        /* display: none; */
+        visibility: hidden; /
+    }
+}
+
+
+.delete_image_button{
+    position:absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, .2);
+    top:0px;
+    left: 0px;
+}
