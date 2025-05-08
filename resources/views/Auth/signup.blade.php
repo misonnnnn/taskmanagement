@@ -68,6 +68,7 @@
                             </div>
                             <div>
                                 <input type="submit" value="Signup" class="btn btn-sm text-light primary_background">
+                                <a href="{{ URL('login') }}">Back to Login page</a>
                             </div>
                         </div>
                     </div>
