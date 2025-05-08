@@ -40,12 +40,12 @@
                         <div>
                             <div class="mb-2">
                                 <label>Username</label>
-                                <input type="text" id="username" name="username" value="{{ old('username') }}" class="form-control form-control-sm" required>
+                                <input type="text" id="username" name="username" value="{{ old('username') }}" class="form-control form-control-sm" placeholder="username" required>
                             </div>
                             <div class="mb-2">
                                 <label>Email</label>
                                 <div class="login_input_outer">
-                                    <input type="email" id="email" name="email" value="{{ old('email') }}" class="form-control form-control-sm" required>
+                                    <input type="email" id="email" name="email" value="{{ old('email') }}" class="form-control form-control-sm" placeholder="email" required>
                                 </div>
                             </div>
                             <div class="mb-2">
