@@ -35,7 +35,7 @@
                         <div>
                             <div class="mb-2">
                                 <label>Email</label>
-                                <input type="email" id="email" name="email" value="{{ old('email') }}" class="form-control form-control-sm">
+                                <input type="email" id="email" name="email" value="{{ old('email') }}" class="form-control form-control-sm" placeholder="email">
                             </div>
                             <div class="mb-2">
                                 <label>Password</label>
